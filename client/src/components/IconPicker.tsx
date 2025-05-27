@@ -30,16 +30,16 @@ const icons: IconOption[] = [
 
 interface IconPickerProps {
   selected: string;
-  onChange: (value: string) => void;
+  setIcon: (icon: string) => void;
 }
 
-export default function IconPicker({ selected, onChange }: IconPickerProps) {
+export default function IconPicker({ selected, setIcon }: IconPickerProps) {
   return (
     <div className="grid grid-cols-4 gap-4 p-2">
       {icons.map(({ label, value, Icon }) => (
         <button
           key={value}
-          onClick={() => onChange(value)}
+          onClick={() => setIcon(value)}
           className={clsx(
             'flex flex-col items-center p-2 border rounded-lg hover:bg-gray-100',
             selected === value
@@ -47,6 +47,7 @@ export default function IconPicker({ selected, onChange }: IconPickerProps) {
               : 'border-gray-300'
           )}
           aria-label={`Select icon: ${label}`}
+          type="button"
         >
           <Icon className="w-6 h-6 mb-1" />
           <span className="text-xs">{label}</span>

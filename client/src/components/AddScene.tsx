@@ -7,7 +7,7 @@ import {
   Textarea,
 } from '@headlessui/react';
 import clsx from 'clsx';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import IconPicker from './IconPicker';
 
 interface AddSceneProps {
@@ -15,9 +15,28 @@ interface AddSceneProps {
 }
 
 const AddScene = ({ isOpen }: AddSceneProps) => {
-  const [icon, setIcon] = useState('smile');
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    icon: 'smile',
+  });
+
+  const onChange = (e: FormEvent) => {
+    const target = e.target as HTMLInputElement;
+    setFormData((prev) => ({
+      ...prev,
+      [target.name]: target.value,
+    }));
+  };
+
+  const onSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    console.log('formData', formData);
+  };
+
   return (
-    <div
+    <form
+      onSubmit={onSubmit}
       className={clsx(
         'border overflow-hidden max-w-0 w-96 h-full ml-auto duration-150 absolute top-0 right-0 z-1 bg-inherit',
         isOpen && 'max-w-96'
@@ -32,6 +51,7 @@ const AddScene = ({ isOpen }: AddSceneProps) => {
               'border mt-3 block w-full rounded-lg px-3 py-1.5',
               'focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25'
             )}
+            onChange={onChange}
           />
         </Field>
         <Field>
@@ -42,19 +62,18 @@ const AddScene = ({ isOpen }: AddSceneProps) => {
               'border mt-3 block w-full rounded-lg px-3 py-1.5',
               'focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25'
             )}
+            onChange={onChange}
           />
         </Field>
-        <IconPicker selected={icon} onChange={setIcon} />
-        <Button
-          className="mt-auto border"
-          data-hover
-          data-active
-          onClick={() => {}}
-        >
+        <IconPicker
+          selected={formData.icon}
+          setIcon={(icon) => setFormData({ ...formData, icon })}
+        />
+        <Button className="mt-auto border" data-hover data-active type="submit">
           Add
         </Button>
       </Fieldset>
-    </div>
+    </form>
   );
 };
 
