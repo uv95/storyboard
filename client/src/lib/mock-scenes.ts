@@ -1,4 +1,4 @@
-import { Scene } from "./types";
+import { Scene } from './types';
 
 export const mockScenes: Scene[] = [
   {
