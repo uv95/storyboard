@@ -9,15 +9,17 @@ import {
 import clsx from 'clsx';
 import { FormEvent, useState } from 'react';
 import IconPicker from './IconPicker';
+import { Scene } from '@/lib/types';
 
 interface AddSceneProps {
   isOpen: boolean;
 }
 
 const AddScene = ({ isOpen }: AddSceneProps) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<Scene>({
     name: '',
     description: '',
+    order: 0,
     icon: 'smile',
   });
 
