@@ -19,7 +19,7 @@ const SceneCard = ({ scene }: SceneCardProps) => {
       </div>
       <div className="ml-auto p-4 flex gap-2 self-start">
         <Pencil className="w-4 h-4 cursor-pointer" />
-        <Trash2 className="w-4 h-4 text-[#e07a5f] cursor-pointer" />
+        <Trash2 className="w-4 h-4 text-pantone cursor-pointer" />
       </div>
     </div>
   );
