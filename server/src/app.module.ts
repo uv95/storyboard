@@ -8,6 +8,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'node:path';
 import { StoryboardModule } from './modules/storyboard/storyboard.module';
 import { StoryboardService } from './modules/storyboard/storyboard.service';
+import { UUIDType } from './graphql/scalars/uuid.type';
 
 @Module({
   imports: [
@@ -24,6 +25,10 @@ import { StoryboardService } from './modules/storyboard/storyboard.service';
     StoryboardModule,
   ],
   controllers: [AppController],
-  providers: [AppService, StoryboardService],
+  providers: [
+    AppService,
+    StoryboardService,
+    { provide: 'UUID', useValue: UUIDType },
+  ],
 })
 export class AppModule {}

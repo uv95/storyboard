@@ -1,15 +1,16 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Field, GraphQLISODateTime, ObjectType } from '@nestjs/graphql';
+import { UUIDType } from 'src/graphql/scalars/uuid.type';
 import { Scene } from 'src/modules/scene/dto/scene.type';
 
 @ObjectType()
 export class Storyboard {
-  @Field(() => ID)
+  @Field(() => UUIDType)
   id: string;
 
   @Field()
   title: string;
 
-  @Field()
+  @Field(() => GraphQLISODateTime)
   createdAt: Date;
 
   @Field(() => [Scene])

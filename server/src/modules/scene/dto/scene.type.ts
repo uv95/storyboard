@@ -1,9 +1,10 @@
-import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
+import { UUIDType } from 'src/graphql/scalars/uuid.type';
 import { Storyboard } from 'src/modules/storyboard/dto/storyboard.type';
 
 @ObjectType()
 export class Scene {
-  @Field(() => ID)
+  @Field(() => UUIDType)
   id: string;
 
   @Field()
@@ -15,12 +16,12 @@ export class Scene {
   @Field(() => String, { nullable: true })
   icon: string;
 
-  @Field(() => Int)
+  @Field()
   order: number;
 
   @Field(() => Storyboard)
   storyboard: Storyboard;
 
-  @Field(() => ID)
+  @Field(() => UUIDType)
   storyboardId: string;
 }
