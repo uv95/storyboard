@@ -1,14 +1,14 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
-import configuration from './config/configuration';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'node:path';
-import { StoryboardModule } from './modules/storyboard/storyboard.module';
-import { StoryboardService } from './modules/storyboard/storyboard.service';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import configuration from './config/configuration';
 import { UUIDType } from './graphql/scalars/uuid.type';
+import { StoryboardModule } from './modules/storyboard/storyboard.module';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Module({
   imports: [
@@ -27,7 +27,7 @@ import { UUIDType } from './graphql/scalars/uuid.type';
   controllers: [AppController],
   providers: [
     AppService,
-    StoryboardService,
+    PrismaService,
     { provide: 'UUID', useValue: UUIDType },
   ],
 })
