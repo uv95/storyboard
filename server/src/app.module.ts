@@ -9,6 +9,7 @@ import configuration from './config/configuration';
 import { UUIDType } from './graphql/scalars/uuid.type';
 import { StoryboardModule } from './modules/storyboard/storyboard.module';
 import { PrismaService } from '../prisma/prisma.service';
+import { SceneModule } from './modules/scene/scene.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { PrismaService } from '../prisma/prisma.service';
       sortSchema: true,
     }),
     StoryboardModule,
+    SceneModule,
   ],
   controllers: [AppController],
   providers: [

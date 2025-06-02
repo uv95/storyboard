@@ -15,7 +15,7 @@ export class StoryboardService {
     });
   }
 
-  findOne(id: string) {
+  findById(id: string) {
     return this.prisma.storyboard.findUnique({
       where: { id },
       include: {

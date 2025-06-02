@@ -1,0 +1,32 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  storyboard(id: UUID!): Storyboard!
+}
+
+type Scene {
+  description: String
+  icon: String
+  id: UUID!
+  order: Float!
+  storyboard: Storyboard!
+  storyboardId: UUID!
+  title: String!
+}
+
+type Storyboard {
+  createdAt: DateTime!
+  id: UUID!
+  scenes: [Scene!]!
+  title: String!
+}
+
+"""Custom scalar for UUID values"""
+scalar UUID
