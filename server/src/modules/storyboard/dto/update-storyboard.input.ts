@@ -1,7 +1,5 @@
-import { Field, InputType } from '@nestjs/graphql';
+import { InputType, PartialType } from '@nestjs/graphql';
+import { CreateStoryboardInput } from './create-storyboard.input';
 
 @InputType()
-export class UpdateStoryboardInput {
-  @Field()
-  title: string;
-}
+export class UpdateStoryboardInput extends PartialType(CreateStoryboardInput) {}

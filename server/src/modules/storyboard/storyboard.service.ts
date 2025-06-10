@@ -1,44 +1,63 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from '../../prisma/prisma.service';
-import { CreateStoryboardInput } from './dto/create-storyboard.input';
-import { UpdateStoryboardInput } from './dto/update-storyboard.input';
+import { validate } from 'uuid';
 
 @Injectable()
 export class StoryboardService {
   constructor(private readonly prisma: PrismaService) {}
 
-  findAll() {
-    return this.prisma.storyboard.findMany({
+  private async validateStoryboard(id: string) {
+    if (!validate(id)) {
+      throw new BadRequestException('Invalid id');
+    }
+
+    const storyboard = await this.prisma.storyboard.findUnique({
+      where: { id },
+    });
+
+    if (!storyboard) {
+      throw new NotFoundException('Storyboard with this id not found');
+    }
+
+    return storyboard;
+  }
+
+  async findAll() {
+    return await this.prisma.storyboard.findMany({
       include: {
         scenes: true,
       },
     });
   }
 
-  findById(id: string) {
-    return this.prisma.storyboard.findUnique({
-      where: { id },
-      include: {
-        scenes: true,
-      },
-    });
+  async findById(id: string) {
+    return await this.validateStoryboard(id);
   }
 
-  create(data: CreateStoryboardInput) {
-    return this.prisma.storyboard.create({
+  async create(data: Prisma.StoryboardCreateInput) {
+    return await this.prisma.storyboard.create({
       data,
     });
   }
 
-  update(id: string, data: UpdateStoryboardInput) {
-    return this.prisma.storyboard.update({
+  async update(id: string, data: Prisma.StoryboardUpdateInput) {
+    await this.validateStoryboard(id);
+
+    return await this.prisma.storyboard.update({
       where: { id },
       data,
     });
   }
 
-  delete(id: string) {
-    return this.prisma.storyboard.delete({
+  async delete(id: string) {
+    await this.validateStoryboard(id);
+
+    return await this.prisma.storyboard.delete({
       where: { id },
     });
   }

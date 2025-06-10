@@ -2,13 +2,37 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateSceneInput {
+  description: String
+  icon: String
+  order: Float!
+  storyboardId: UUID!
+  title: String!
+}
+
+input CreateStoryboardInput {
+  title: String!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
 
+type Mutation {
+  createScene(data: CreateSceneInput!): Scene!
+  createStoryboard(data: CreateStoryboardInput!): Storyboard!
+  deleteScene(id: String!): Scene!
+  deleteStoryboard(id: String!): Storyboard!
+  updateScene(data: UpdateSceneInput!, id: String!): Scene!
+  updateStoryboard(data: UpdateStoryboardInput!, id: String!): Storyboard!
+}
+
 type Query {
-  storyboard(id: UUID!): Storyboard!
+  getScene(id: UUID!): Scene!
+  getStoryboard(id: UUID!): Storyboard!
+  getStoryboardScenes(storyboardId: UUID!): [Scene!]!
+  getStoryboards: [Storyboard!]!
 }
 
 type Scene {
@@ -30,3 +54,15 @@ type Storyboard {
 
 """Custom scalar for UUID values"""
 scalar UUID
+
+input UpdateSceneInput {
+  description: String
+  icon: String
+  order: Float
+  storyboardId: UUID
+  title: String
+}
+
+input UpdateStoryboardInput {
+  title: String
+}

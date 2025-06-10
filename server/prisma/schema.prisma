@@ -27,6 +27,6 @@ model Scene {
   description  String?
   icon         String?
   order        Int
-  storyboard   Storyboard @relation(fields: [storyboardId], references: [id])
+  storyboard   Storyboard @relation(fields: [storyboardId], references: [id], onDelete: Cascade)
   storyboardId String
 }
