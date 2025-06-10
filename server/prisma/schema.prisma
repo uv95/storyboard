@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
 datasource db {
@@ -27,6 +27,6 @@ model Scene {
   description  String?
   icon         String?
   order        Int
-  storyboard   Storyboard @relation(fields: [storyboardId], references: [id])
+  storyboard   Storyboard @relation(fields: [storyboardId], references: [id], onDelete: Cascade)
   storyboardId String
 }
