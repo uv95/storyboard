@@ -1,3 +1,4 @@
+import { Scene } from '@/lib/types';
 import {
   Button,
   Field,
@@ -9,13 +10,14 @@ import {
 import clsx from 'clsx';
 import { FormEvent, useState } from 'react';
 import IconPicker from './IconPicker';
-import { Scene } from '@/lib/types';
+import Modal from './Modal';
 
 interface AddSceneProps {
   isOpen: boolean;
+  onClose: () => void;
 }
 
-const AddScene = ({ isOpen }: AddSceneProps) => {
+const AddScene = ({ isOpen, onClose }: AddSceneProps) => {
   const [formData, setFormData] = useState<Scene>({
     name: '',
     description: '',
@@ -37,45 +39,57 @@ const AddScene = ({ isOpen }: AddSceneProps) => {
   };
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className={clsx(
-        'border overflow-hidden max-w-0 w-96 h-full ml-auto duration-150 absolute top-0 right-0 z-1 bg-inherit',
-        isOpen && 'max-w-96'
-      )}
-    >
-      <Fieldset className="p-2 flex flex-col gap-2 h-full">
-        <Field>
-          <Label className="">Name</Label>
-          <Input
-            name="name"
-            className={clsx(
-              'border mt-3 block w-full rounded-lg px-3 py-1.5',
-              'focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25'
-            )}
-            onChange={onChange}
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <form onSubmit={onSubmit} className="w-full">
+        <Fieldset className="flex flex-col gap-4">
+          <Field>
+            <Label className="block text-sm font-medium text-gray-700">
+              Name
+            </Label>
+            <Input
+              name="name"
+              className={clsx(
+                'border mt-1 block w-full rounded-lg px-3 py-2',
+                'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+              )}
+              onChange={onChange}
+            />
+          </Field>
+          <Field>
+            <Label className="block text-sm font-medium text-gray-700">
+              Description
+            </Label>
+            <Textarea
+              name="description"
+              className={clsx(
+                'border mt-1 block w-full rounded-lg px-3 py-2',
+                'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+              )}
+              onChange={onChange}
+            />
+          </Field>
+          <IconPicker
+            selected={formData.icon}
+            setIcon={(icon) => setFormData({ ...formData, icon })}
           />
-        </Field>
-        <Field>
-          <Label className="">Description</Label>
-          <Textarea
-            name="description"
-            className={clsx(
-              'border mt-3 block w-full rounded-lg px-3 py-1.5',
-              'focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25'
-            )}
-            onChange={onChange}
-          />
-        </Field>
-        <IconPicker
-          selected={formData.icon}
-          setIcon={(icon) => setFormData({ ...formData, icon })}
-        />
-        <Button className="mt-auto border" data-hover data-active type="submit">
-          Add
-        </Button>
-      </Fieldset>
-    </form>
+          <div className="flex gap-3 mt-4">
+            <Button
+              type="button"
+              onClick={onClose}
+              className="flex-1 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              className="flex-1 px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Add Scene
+            </Button>
+          </div>
+        </Fieldset>
+      </form>
+    </Modal>
   );
 };
 

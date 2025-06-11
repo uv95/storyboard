@@ -11,11 +11,14 @@ export default function Home() {
     <main className="w-full h-full min-h-[480px] p-8 border flex-grow flex flex-col bg-inherit">
       <div className="w-full h-full flex relative bg-inherit">
         <SceneList />
-        <AddScene isOpen={isAddSceneOpen} />
+        <AddScene
+          isOpen={isAddSceneOpen}
+          onClose={() => setIsAddSceneOpen(false)}
+        />
       </div>
       <button
         className="border mt-auto"
-        onClick={() => setIsAddSceneOpen(!isAddSceneOpen)}
+        onClick={() => setIsAddSceneOpen(true)}
       >
         Add scene
       </button>
