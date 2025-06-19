@@ -6,6 +6,13 @@ export interface Scene {
   icon: string;
 }
 
+export interface Storyboard {
+  id?: string;
+  title: string;
+  createdAt: string;
+  scenes: Scene[];
+}
+
 export enum ButtonStyle {
   OUTLINE = 'outline',
   RED = 'red',

@@ -1,4 +1,4 @@
-import { Scene } from './types';
+import { Scene, Storyboard } from './types';
 
 export const mockScenes: Scene[] = [
   {
@@ -37,5 +37,14 @@ export const mockScenes: Scene[] = [
     description:
       'The character returns home, having learned an important lesson.',
     icon: 'smile',
+  },
+];
+
+export const mockStoryboards: Storyboard[] = [
+  {
+    id: '1',
+    title: 'My storyboard',
+    scenes: [],
+    createdAt: '',
   },
 ];

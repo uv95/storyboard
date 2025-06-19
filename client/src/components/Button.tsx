@@ -5,7 +5,7 @@ import { ButtonStyle } from '@/lib/types';
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   className?: string;
-  onClick: () => void;
+  onClick?: () => void;
   btnStyle: ButtonStyle;
 }
 
