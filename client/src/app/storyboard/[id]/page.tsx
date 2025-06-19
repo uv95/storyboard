@@ -13,7 +13,7 @@ export default function Storyboard() {
   return (
     <main className="w-full h-full min-h-[480px] px-8 pb-8 flex-grow flex flex-col bg-inherit">
       <div className="w-full flex align-center justify-end gap-4 mb-4">
-        <Breadcrumbs />
+        <Breadcrumbs storyboardTitle={'My storyboard'} />
         <Button
           btnStyle={ButtonStyle.BLUE}
           onClick={() => setIsAddSceneOpen(true)}

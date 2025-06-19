@@ -1,5 +1,6 @@
 'use client';
 
+import AddStoryboard from '@/components/AddStoryboard';
 import Button from '@/components/Button';
 import StoryboardList from '@/components/StoryboardList';
 import { ButtonStyle } from '@/lib/types';
@@ -20,6 +21,10 @@ export default function Home() {
       </div>
       <div className="w-full h-full flex relative bg-inherit">
         <StoryboardList />
+        <AddStoryboard
+          isOpen={isAddStoryboardOpen}
+          onClose={() => setIsAddStoryboardOpen(false)}
+        />
       </div>
     </main>
   );

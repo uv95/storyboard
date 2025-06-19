@@ -10,7 +10,7 @@ const StoryboardList = ({}: StoryboardListProps) => {
       {mockStoryboards.map((storyboard) => (
         <Link href={`/storyboard/${storyboard.id}`} key={storyboard.id}>
           <Card className="min-w-96 pl-4 cursor-pointer">
-            {storyboard.title}
+            <strong className="text-lg">{storyboard.title}</strong>
           </Card>
         </Link>
       ))}
