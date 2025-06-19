@@ -5,3 +5,9 @@ export interface Scene {
   description: string;
   icon: string;
 }
+
+export enum ButtonStyle {
+  OUTLINE = 'outline',
+  RED = 'red',
+  BLUE = 'blue',
+}

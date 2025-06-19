@@ -4,22 +4,26 @@ interface ModalProps {
   children: React.ReactNode;
   isOpen: boolean;
   onClose: () => void;
+  title: string;
 }
 
-const Modal = ({ children, isOpen, onClose }: ModalProps) => {
+const Modal = ({ children, isOpen, onClose, title }: ModalProps) => {
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-50">
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-      <div className="fixed inset-0 flex items-center justify-center p-4">
-        <DialogPanel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-          <DialogTitle
-            as="h3"
-            className="text-lg font-medium leading-6 text-gray-900 mb-4"
-          >
-            Add New Scene
-          </DialogTitle>
-          {children}
-        </DialogPanel>
+
+      <div className="fixed inset-0 overflow-y-auto p-2 sm:p-4">
+        <div className="min-h-full flex items-center justify-center">
+          <DialogPanel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-4 sm:p-6 text-left align-middle shadow-xl transition-all">
+            <DialogTitle
+              as="h3"
+              className="text-lg font-medium leading-6 text-gray-900 mb-4"
+            >
+              {title}
+            </DialogTitle>
+            {children}
+          </DialogPanel>
+        </div>
       </div>
     </Dialog>
   );

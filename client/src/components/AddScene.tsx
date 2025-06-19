@@ -1,16 +1,10 @@
-import { Scene } from '@/lib/types';
-import {
-  Button,
-  Field,
-  Fieldset,
-  Input,
-  Label,
-  Textarea,
-} from '@headlessui/react';
+import { ButtonStyle, Scene } from '@/lib/types';
+import { Field, Fieldset, Input, Label, Textarea } from '@headlessui/react';
 import clsx from 'clsx';
 import { FormEvent, useState } from 'react';
 import IconPicker from './IconPicker';
 import Modal from './Modal';
+import Button from './Button';
 
 interface AddSceneProps {
   isOpen: boolean;
@@ -39,7 +33,7 @@ const AddScene = ({ isOpen, onClose }: AddSceneProps) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} title="Add New Scene">
       <form onSubmit={onSubmit} className="w-full">
         <Fieldset className="flex flex-col gap-4">
           <Field>
@@ -75,14 +69,16 @@ const AddScene = ({ isOpen, onClose }: AddSceneProps) => {
           <div className="flex gap-3 mt-4">
             <Button
               type="button"
+              btnStyle={ButtonStyle.OUTLINE}
               onClick={onClose}
-              className="flex-1 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="flex-1"
             >
               Cancel
             </Button>
             <Button
               type="submit"
-              className="flex-1 px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              btnStyle={ButtonStyle.BLUE}
+              className="flex-1"
             >
               Add Scene
             </Button>
