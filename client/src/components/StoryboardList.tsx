@@ -1,6 +1,6 @@
 import { mockStoryboards } from '@/lib/mock-scenes';
-import Card from './Card';
 import Link from 'next/link';
+import StoryboardCard from './StoryboardCard';
 
 interface StoryboardListProps {}
 
@@ -9,9 +9,7 @@ const StoryboardList = ({}: StoryboardListProps) => {
     <div className="flex gap-4 w-full flex-wrap">
       {mockStoryboards.map((storyboard) => (
         <Link href={`/storyboard/${storyboard.id}`} key={storyboard.id}>
-          <Card className="min-w-96 pl-4 cursor-pointer">
-            <strong className="text-lg">{storyboard.title}</strong>
-          </Card>
+          <StoryboardCard storyboard={storyboard} />
         </Link>
       ))}
     </div>

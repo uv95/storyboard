@@ -7,7 +7,7 @@ const SceneList = ({}: SceneListProps) => {
   return (
     <div className="flex flex-col gap-4 w-full">
       {mockScenes.map((scene) => (
-        <SceneCard scene={scene} key={scene.id} />
+        <SceneCard key={scene.id} scene={scene} />
       ))}
     </div>
   );

@@ -5,12 +5,19 @@ import { FormEvent, useState } from 'react';
 import Button from './Button';
 import Modal from './Modal';
 
-interface AddStoryboardProps {
+interface StoryboardFormProps {
   isOpen: boolean;
   onClose: () => void;
+  initialData?: Storyboard;
+  title: string;
 }
 
-const AddStoryboard = ({ isOpen, onClose }: AddStoryboardProps) => {
+const StoryboardForm = ({
+  isOpen,
+  onClose,
+  initialData,
+  title,
+}: StoryboardFormProps) => {
   const [formData, setFormData] = useState<Partial<Storyboard>>({
     title: '',
   });
@@ -29,7 +36,7 @@ const AddStoryboard = ({ isOpen, onClose }: AddStoryboardProps) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Add New Storyboard">
+    <Modal isOpen={isOpen} onClose={onClose} title={title}>
       <form onSubmit={onSubmit} className="w-full">
         <Fieldset className="flex flex-col gap-4">
           <Field>
@@ -38,6 +45,7 @@ const AddStoryboard = ({ isOpen, onClose }: AddStoryboardProps) => {
             </Label>
             <Input
               name="title"
+              defaultValue={initialData?.title}
               className={clsx(
                 'border mt-1 block w-full rounded-lg px-3 py-2',
                 'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
@@ -60,7 +68,7 @@ const AddStoryboard = ({ isOpen, onClose }: AddStoryboardProps) => {
               btnStyle={ButtonStyle.BLUE}
               className="flex-1"
             >
-              Add Storyboard
+              Save
             </Button>
           </div>
         </Fieldset>
@@ -69,4 +77,4 @@ const AddStoryboard = ({ isOpen, onClose }: AddStoryboardProps) => {
   );
 };
 
-export default AddStoryboard;
+export default StoryboardForm;

@@ -1,8 +1,8 @@
 'use client';
 
-import AddScene from '@/components/AddScene';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Button from '@/components/Button';
+import SceneForm from '@/components/SceneForm';
 import SceneList from '@/components/SceneList';
 import { ButtonStyle } from '@/lib/types';
 import { useState } from 'react';
@@ -23,7 +23,8 @@ export default function Storyboard() {
       </div>
       <div className="w-full h-full flex relative bg-inherit">
         <SceneList />
-        <AddScene
+        <SceneForm
+          title="Add new scene"
           isOpen={isAddSceneOpen}
           onClose={() => setIsAddSceneOpen(false)}
         />

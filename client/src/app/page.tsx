@@ -1,7 +1,7 @@
 'use client';
 
-import AddStoryboard from '@/components/AddStoryboard';
 import Button from '@/components/Button';
+import StoryboardForm from '@/components/StoryboardForm';
 import StoryboardList from '@/components/StoryboardList';
 import { ButtonStyle } from '@/lib/types';
 import { useState } from 'react';
@@ -21,9 +21,10 @@ export default function Home() {
       </div>
       <div className="w-full h-full flex relative bg-inherit">
         <StoryboardList />
-        <AddStoryboard
+        <StoryboardForm
           isOpen={isAddStoryboardOpen}
           onClose={() => setIsAddStoryboardOpen(false)}
+          title="Add New Storyboard"
         />
       </div>
     </main>
