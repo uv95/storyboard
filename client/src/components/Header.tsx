@@ -1,13 +1,13 @@
 import { Switch } from '@headlessui/react';
+import Button from './Button';
+import { ButtonStyle } from '@/lib/types';
 
 const Header = () => {
   return (
     <header className="h-20 w-full flex justify-between items-center px-4 bg-foreground shadow-sm">
       <h1 className="text-background text-3xl font-bold">Storyboard Editor</h1>
       <div className="flex items-center gap-4">
-        <button className="rounded-xl py-2 px-4 bg-pantone text-white">
-          Export as PDF
-        </button>
+        <Button btnStyle={ButtonStyle.RED}>Export as PDF</Button>
         <Switch
           //   checked={enabled}
           //   onChange={toggleTheme}

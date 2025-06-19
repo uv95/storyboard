@@ -1,24 +1,32 @@
 'use client';
 
-import AddScene from '@/components/AddScene';
-import SceneList from '@/components/SceneList';
+import Button from '@/components/Button';
+import StoryboardForm from '@/components/StoryboardForm';
+import StoryboardList from '@/components/StoryboardList';
+import { ButtonStyle } from '@/lib/types';
 import { useState } from 'react';
 
 export default function Home() {
-  const [isAddSceneOpen, setIsAddSceneOpen] = useState(false);
+  const [isAddStoryboardOpen, setIsAddStoryboardOpen] = useState(false);
 
   return (
-    <main className="w-full h-full min-h-[480px] p-8 border flex-grow flex flex-col bg-inherit">
-      <div className="w-full h-full flex relative bg-inherit">
-        <SceneList />
-        <AddScene isOpen={isAddSceneOpen} />
+    <main className="w-full h-full min-h-[480px] px-8 pb-8 flex-grow flex flex-col bg-inherit">
+      <div className="w-full flex align-center justify-end gap-4 mb-4">
+        <Button
+          btnStyle={ButtonStyle.BLUE}
+          onClick={() => setIsAddStoryboardOpen(true)}
+        >
+          Add storyboard
+        </Button>
       </div>
-      <button
-        className="border mt-auto"
-        onClick={() => setIsAddSceneOpen(!isAddSceneOpen)}
-      >
-        Add scene
-      </button>
+      <div className="w-full h-full flex relative bg-inherit">
+        <StoryboardList />
+        <StoryboardForm
+          isOpen={isAddStoryboardOpen}
+          onClose={() => setIsAddStoryboardOpen(false)}
+          title="Add New Storyboard"
+        />
+      </div>
     </main>
   );
 }
