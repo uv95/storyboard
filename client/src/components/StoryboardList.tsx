@@ -7,11 +7,15 @@ interface StoryboardListProps {}
 const StoryboardList = ({}: StoryboardListProps) => {
   return (
     <div className="flex gap-4 w-full flex-wrap">
-      {mockStoryboards.map((storyboard) => (
-        <Link href={`/storyboard/${storyboard.id}`} key={storyboard.id}>
-          <StoryboardCard storyboard={storyboard} />
-        </Link>
-      ))}
+      {mockStoryboards.length ? (
+        mockStoryboards.map((storyboard) => (
+          <Link href={`/storyboard/${storyboard.id}`} key={storyboard.id}>
+            <StoryboardCard storyboard={storyboard} />
+          </Link>
+        ))
+      ) : (
+        <div>No storyboards yet</div>
+      )}
     </div>
   );
 };
