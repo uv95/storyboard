@@ -29,14 +29,14 @@ export class SceneResolver {
 
   @Mutation(() => Scene)
   async updateScene(
-    @Args('id') id: string,
+    @Args('id', { type: () => UUIDType }) id: string,
     @Args('data') data: UpdateSceneInput,
   ) {
     return await this.sceneService.update(id, data);
   }
 
   @Mutation(() => Scene)
-  async deleteScene(@Args('id') id: string) {
+  async deleteScene(@Args('id', { type: () => UUIDType }) id: string) {
     return await this.sceneService.delete(id);
   }
 }

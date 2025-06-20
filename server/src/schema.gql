@@ -22,10 +22,10 @@ scalar DateTime
 type Mutation {
   createScene(data: CreateSceneInput!): Scene!
   createStoryboard(data: CreateStoryboardInput!): Storyboard!
-  deleteScene(id: String!): Scene!
-  deleteStoryboard(id: String!): Storyboard!
-  updateScene(data: UpdateSceneInput!, id: String!): Scene!
-  updateStoryboard(data: UpdateStoryboardInput!, id: String!): Storyboard!
+  deleteScene(id: UUID!): Scene!
+  deleteStoryboard(id: UUID!): Storyboard!
+  updateScene(data: UpdateSceneInput!, id: UUID!): Scene!
+  updateStoryboard(data: UpdateStoryboardInput!, id: UUID!): Storyboard!
 }
 
 type Query {
