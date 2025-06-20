@@ -27,14 +27,14 @@ export class StoryboardResolver {
 
   @Mutation(() => Storyboard)
   async updateStoryboard(
-    @Args('id') id: string,
+    @Args('id', { type: () => UUIDType }) id: string,
     @Args('data') data: UpdateStoryboardInput,
   ) {
     return await this.storyboardService.update(id, data);
   }
 
   @Mutation(() => Storyboard)
-  async deleteStoryboard(@Args('id') id: string) {
+  async deleteStoryboard(@Args('id', { type: () => UUIDType }) id: string) {
     return await this.storyboardService.delete(id);
   }
 }
