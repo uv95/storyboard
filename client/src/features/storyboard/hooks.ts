@@ -21,7 +21,11 @@ import {
 } from '@/lib/types';
 
 export const useGetStoryboards = (options?: QueryHookOptions) =>
-  useQuery(GET_STORYBOARDS, { fetchPolicy: 'cache-and-network', ...options });
+  useQuery(GET_STORYBOARDS, {
+    fetchPolicy: 'cache-and-network',
+    nextFetchPolicy: 'cache-first',
+    ...options,
+  });
 
 export const useGetStoryboardById = (id: string, options?: QueryHookOptions) =>
   useQuery(GET_STORYBOARD, {

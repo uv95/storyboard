@@ -10,9 +10,9 @@ import {
 function makeClient() {
   const httpLink = new HttpLink({
     uri:
-      process.env.MODE === 'development'
-        ? process.env.URI_DEV
-        : process.env.URI_PROD,
+      process.env.NODE_ENV === 'development'
+        ? process.env.NEXT_PUBLIC_URI_DEV
+        : process.env.NEXT_PUBLIC_URI_PROD,
   });
 
   return new ApolloClient({

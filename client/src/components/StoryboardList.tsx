@@ -1,14 +1,26 @@
-import { mockStoryboards } from '@/lib/mock-scenes';
+'use client';
+
+import { Storyboard } from '@/lib/types';
 import Link from 'next/link';
 import StoryboardCard from './StoryboardCard';
+import { useGetStoryboards } from '@/features/storyboard/hooks';
 
-interface StoryboardListProps {}
+interface StoryboardListProps {
+  items: Storyboard[];
+}
 
-const StoryboardList = ({}: StoryboardListProps) => {
+const StoryboardList = ({ items }: StoryboardListProps) => {
+  const { data, error } = useGetStoryboards();
+  const storyboards = data?.getStoryboards || items;
+
+  if (error) return <div>{error.message}</div>;
+
+  if (!storyboards) return <div>Loading...</div>;
+
   return (
     <div className="flex gap-4 w-full flex-wrap">
-      {mockStoryboards.length ? (
-        mockStoryboards.map((storyboard) => (
+      {storyboards.length ? (
+        storyboards.map((storyboard: Storyboard) => (
           <Link href={`/storyboard/${storyboard.id}`} key={storyboard.id}>
             <StoryboardCard storyboard={storyboard} />
           </Link>

@@ -1,9 +1,10 @@
 import { ButtonStyle, Storyboard } from '@/lib/types';
 import { Field, Fieldset, Input, Label } from '@headlessui/react';
 import clsx from 'clsx';
-import { FormEvent, useState } from 'react';
-import Button from './Button';
+import { useCreateStoryboard } from '@/features/storyboard/hooks';
+import { FormEvent, useRef } from 'react';
 import Modal from './Modal';
+import Button from './Button';
 
 interface StoryboardFormProps {
   isOpen: boolean;
@@ -18,21 +19,18 @@ const StoryboardForm = ({
   initialData,
   title,
 }: StoryboardFormProps) => {
-  const [formData, setFormData] = useState<Partial<Storyboard>>({
-    title: '',
-  });
-
-  const onChange = (e: FormEvent) => {
-    const target = e.target as HTMLInputElement;
-    setFormData((prev) => ({
-      ...prev,
-      [target.name]: target.value,
-    }));
-  };
+  const titleRef = useRef<HTMLInputElement>(null);
+  const [createStoryboard] = useCreateStoryboard();
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    console.log('formData', formData);
+
+    if (titleRef.current) {
+      createStoryboard({
+        variables: { data: { title: titleRef.current.value } },
+      });
+    }
+    onClose();
   };
 
   return (
@@ -44,13 +42,13 @@ const StoryboardForm = ({
               Title
             </Label>
             <Input
+              ref={titleRef}
               name="title"
               defaultValue={initialData?.title}
               className={clsx(
                 'border mt-1 block w-full rounded-lg px-3 py-2',
                 'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
               )}
-              onChange={onChange}
             />
           </Field>
 

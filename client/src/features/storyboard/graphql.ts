@@ -11,14 +11,18 @@ const FIELDS = gql`
 export const GET_STORYBOARDS = gql`
   ${FIELDS}
   query getStoryboards {
-    ...StoryboardFields
+    getStoryboards {
+      ...StoryboardFields
+    }
   }
 `;
 
 export const GET_STORYBOARD = gql`
   ${FIELDS}
   query getStoryboard($id: UUID!) {
-    ...StoryboardFields
+    getStoryboard {
+      ...StoryboardFields
+    }
   }
 `;
 

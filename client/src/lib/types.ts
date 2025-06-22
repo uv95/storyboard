@@ -21,24 +21,33 @@ export enum ButtonStyle {
   BLUE = 'blue',
 }
 
+export enum Entity {
+  STORYBOARD = 'storyboard',
+  SCENE = 'scene',
+}
+
 export type CreateSceneInput = {
-  description?: string;
-  icon?: string;
-  order: number;
-  storyboardId: string;
-  title: string;
+  data: {
+    description?: string;
+    icon?: string;
+    order: number;
+    storyboardId: string;
+    title: string;
+  };
 };
 
 export type CreateStoryboardInput = {
-  title: string;
+  data: { title: string };
 };
 
 export type UpdateSceneInput = {
-  description?: string;
-  icon?: string;
-  order?: number;
-  storyboardId?: string;
-  title?: string;
+  data: {
+    description?: string;
+    icon?: string;
+    order?: number;
+    storyboardId?: string;
+    title?: string;
+  };
 };
 
 export type DeleteSceneInput = {
@@ -46,7 +55,7 @@ export type DeleteSceneInput = {
 };
 
 export type UpdateStoryboardInput = {
-  title?: string;
+  data: { title?: string };
 };
 
 export type DeleteStoryboardInput = {
@@ -54,25 +63,25 @@ export type DeleteStoryboardInput = {
 };
 
 export type CreateSceneMutationResult = {
-  createScene: Scene;
+  data: { createScene: Scene };
 };
 
 export type CreateStoryboardMutationResult = {
-  createStoryboard: Storyboard;
+  data: { createStoryboard: Storyboard };
 };
 
 export type DeleteSceneMutationResult = {
-  deleteScene: Scene;
+  data: { deleteScene: Scene };
 };
 
 export type DeleteStoryboardMutationResult = {
-  deleteStoryboard: Storyboard;
+  data: { deleteStoryboard: Storyboard };
 };
 
 export type UpdateSceneMutationResult = {
-  updateScene: Scene;
+  data: { updateScene: Scene };
 };
 
 export type UpdateStoryboardMutationResult = {
-  updateStoryboard: Storyboard;
+  data: { updateStoryboard: Storyboard };
 };
