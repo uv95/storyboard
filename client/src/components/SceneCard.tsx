@@ -1,5 +1,5 @@
 import { icons } from '@/lib/icons';
-import { Scene } from '@/lib/types';
+import { Entity, Scene } from '@/lib/types';
 import Card from './Card';
 import { useState } from 'react';
 import DeleteModal from './DeleteModal';
@@ -23,7 +23,7 @@ const SceneCard = ({ scene }: SceneCardProps) => {
         <>
           {Icon && <Icon className="w-8 h-8 ml-4 flex-shrink-0" />}
           <div className="flex flex-col justify-between py-4">
-            <p className="font-bold">{scene.name}</p>
+            <p className="font-bold">{scene.title}</p>
             <p className="text-sm text-gray-600 line-clamp-2">
               {scene.description}
             </p>
@@ -33,15 +33,16 @@ const SceneCard = ({ scene }: SceneCardProps) => {
 
       {isDelete && (
         <DeleteModal
-          entity="scene"
+          entity={Entity.SCENE}
           onClose={() => setIsDelete(false)}
           isOpen={isDelete}
+          id={scene.id!}
         />
       )}
 
       {isEdit && (
         <SceneForm
-          title="Edit Scene"
+          formTitle="Edit Scene"
           isOpen={isEdit}
           initialData={scene}
           onClose={() => setIsEdit(false)}

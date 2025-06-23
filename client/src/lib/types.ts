@@ -1,7 +1,7 @@
 export interface Scene {
   id?: string;
   order: number;
-  name: string;
+  title: string;
   description?: string;
   icon?: string;
   storyboard: Storyboard;
@@ -41,6 +41,7 @@ export type CreateStoryboardInput = {
 };
 
 export type UpdateSceneInput = {
+  id: string;
   data: {
     description?: string;
     icon?: string;
@@ -55,6 +56,7 @@ export type DeleteSceneInput = {
 };
 
 export type UpdateStoryboardInput = {
+  id: string;
   data: { title?: string };
 };
 

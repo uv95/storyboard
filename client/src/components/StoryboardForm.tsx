@@ -1,7 +1,10 @@
 import { ButtonStyle, Storyboard } from '@/lib/types';
 import { Field, Fieldset, Input, Label } from '@headlessui/react';
 import clsx from 'clsx';
-import { useCreateStoryboard } from '@/features/storyboard/hooks';
+import {
+  useCreateStoryboard,
+  useUpdateStoryboard,
+} from '@/features/storyboard/hooks';
 import { FormEvent, useRef } from 'react';
 import Modal from './Modal';
 import Button from './Button';
@@ -10,31 +13,46 @@ interface StoryboardFormProps {
   isOpen: boolean;
   onClose: () => void;
   initialData?: Storyboard;
-  title: string;
+  formTitle: string;
 }
 
 const StoryboardForm = ({
   isOpen,
   onClose,
   initialData,
-  title,
+  formTitle,
 }: StoryboardFormProps) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const [createStoryboard] = useCreateStoryboard();
+  const [updateStoryboard] = useUpdateStoryboard();
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
 
-    if (titleRef.current) {
+    if (!titleRef.current) {
+      return;
+    }
+
+    const title = titleRef.current.value;
+
+    if (initialData) {
+      updateStoryboard({
+        variables: {
+          id: initialData.id!,
+          data: { title },
+        },
+      });
+    } else {
       createStoryboard({
-        variables: { data: { title: titleRef.current.value } },
+        variables: { data: { title } },
       });
     }
+
     onClose();
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title={title}>
+    <Modal isOpen={isOpen} onClose={onClose} title={formTitle}>
       <form onSubmit={onSubmit} className="w-full">
         <Fieldset className="flex flex-col gap-4">
           <Field>

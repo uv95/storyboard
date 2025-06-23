@@ -13,7 +13,7 @@ const FIELDS = gql`
 export const GET_STORYBOARD_SCENES = gql`
   ${FIELDS}
   query getStoryboardScenes($storyboardId: UUID!) {
-    getStoryboardScenes {
+    getStoryboardScenes(storyboardId: $storyboardId) {
       ...SceneFields
     }
   }
@@ -22,7 +22,7 @@ export const GET_STORYBOARD_SCENES = gql`
 export const GET_SCENE = gql`
   ${FIELDS}
   query getScene($id: UUID!) {
-    getScene {
+    getScene(id: $id) {
       ...SceneFields
     }
   }

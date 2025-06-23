@@ -20,7 +20,7 @@ export const GET_STORYBOARDS = gql`
 export const GET_STORYBOARD = gql`
   ${FIELDS}
   query getStoryboard($id: UUID!) {
-    getStoryboard {
+    getStoryboard(id: $id) {
       ...StoryboardFields
     }
   }

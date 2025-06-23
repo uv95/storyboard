@@ -20,8 +20,12 @@ import {
   UPDATE_SCENE,
 } from './graphql';
 
-export const useGetScenes = (options?: QueryHookOptions) =>
+export const useGetScenes = (
+  storyboardId: string,
+  options?: QueryHookOptions
+) =>
   useQuery(GET_STORYBOARD_SCENES, {
+    variables: { storyboardId },
     fetchPolicy: 'cache-and-network',
     nextFetchPolicy: 'cache-first',
     ...options,
