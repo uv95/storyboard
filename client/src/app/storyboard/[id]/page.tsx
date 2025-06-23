@@ -1,33 +1,30 @@
-'use client';
-
+import AddButton from '@/components/AddButton';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import Button from '@/components/Button';
-import SceneForm from '@/components/SceneForm';
 import SceneList from '@/components/SceneList';
-import { ButtonStyle } from '@/lib/types';
-import { useState } from 'react';
+import { GET_STORYBOARD_SCENES } from '@/features/scene/graphql';
+import { query } from '@/lib/apollo-client';
+import { Entity } from '@/lib/types';
 
-export default function Storyboard() {
-  const [isAddSceneOpen, setIsAddSceneOpen] = useState(false);
+export default async function Storyboard({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+
+  const { data } = await query({
+    query: GET_STORYBOARD_SCENES,
+    variables: { storyboardId: id },
+  });
 
   return (
     <main className="w-full h-full min-h-[480px] px-8 pb-8 flex-grow flex flex-col bg-inherit">
       <div className="w-full flex align-center justify-end gap-4 mb-4">
         <Breadcrumbs storyboardTitle={'My storyboard'} />
-        <Button
-          btnStyle={ButtonStyle.BLUE}
-          onClick={() => setIsAddSceneOpen(true)}
-        >
-          Add scene
-        </Button>
+        <AddButton entity={Entity.SCENE} />
       </div>
       <div className="w-full h-full flex relative bg-inherit">
-        <SceneList />
-        <SceneForm
-          title="Add new scene"
-          isOpen={isAddSceneOpen}
-          onClose={() => setIsAddSceneOpen(false)}
-        />
+        <SceneList items={data.getStoryboardScenes} storyboardId={id}/>
       </div>
     </main>
   );

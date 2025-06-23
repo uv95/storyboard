@@ -1,4 +1,6 @@
-import { Storyboard } from '@/lib/types';
+'use client';
+
+import { Entity, Storyboard } from '@/lib/types';
 import { useState } from 'react';
 import Card from './Card';
 import DeleteModal from './DeleteModal';
@@ -24,9 +26,10 @@ const StoryboardCard = ({ storyboard }: StoryboardCardProps) => {
 
       {isDelete && (
         <DeleteModal
-          entity="storyboard"
+          entity={Entity.STORYBOARD}
           onClose={() => setIsDelete(false)}
           isOpen={isDelete}
+          id={storyboard.id!}
         />
       )}
 
