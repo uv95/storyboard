@@ -2,6 +2,7 @@ import AddButton from '@/components/AddButton';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import SceneList from '@/components/SceneList';
 import { GET_STORYBOARD_SCENES } from '@/features/scene/graphql';
+import { GET_STORYBOARD_TITLE } from '@/features/storyboard/graphql';
 import { query } from '@/lib/apollo-client';
 import { Entity } from '@/lib/types';
 
@@ -16,11 +17,15 @@ export default async function Storyboard({
     query: GET_STORYBOARD_SCENES,
     variables: { storyboardId: id },
   });
+  const { data: storyboardTitle } = await query({
+    query: GET_STORYBOARD_TITLE,
+    variables: { id },
+  });
 
   return (
     <main className="w-full h-full min-h-[480px] pb-8 flex-grow flex flex-col bg-inherit">
       <div className="w-full px-8 py-4 flex align-center justify-end gap-4 mb-4">
-        <Breadcrumbs storyboardTitle={'My storyboard'} />
+        <Breadcrumbs storyboardTitle={storyboardTitle.getStoryboard.title} />
         <AddButton entity={Entity.SCENE} />
       </div>
       <div className="w-full h-full px-8 flex relative bg-inherit">

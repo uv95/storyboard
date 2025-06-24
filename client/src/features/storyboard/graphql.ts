@@ -26,6 +26,14 @@ export const GET_STORYBOARD = gql`
   }
 `;
 
+export const GET_STORYBOARD_TITLE = gql`
+  query getStoryboard($id: UUID!) {
+    getStoryboard(id: $id) {
+      title
+    }
+  }
+`;
+
 export const CREATE_STORYBOARD = gql`
   ${FIELDS}
   mutation createStoryboard($data: CreateStoryboardInput!) {
