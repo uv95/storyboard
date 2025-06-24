@@ -35,7 +35,7 @@ const StoryboardCard = ({ storyboard }: StoryboardCardProps) => {
 
       {isEdit && (
         <StoryboardForm
-          title="Edit storyboard"
+          formTitle="Edit storyboard"
           isOpen={isEdit}
           initialData={storyboard}
           onClose={() => setIsEdit(false)}

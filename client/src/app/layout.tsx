@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import { ApolloWrapper } from './ApolloWrapper';
+import { ThemeProvider } from 'next-themes';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -22,14 +23,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${spaceGrotesk.variable} antialiased`}>
         <ApolloWrapper>
-          <div className="min-h-screen flex flex-col justify-between gap-4 font-sans">
-            <Header />
-            {children}
-            <Footer />
-          </div>
+          <ThemeProvider>
+            <div className="min-h-screen flex flex-col justify-between font-sans">
+              <Header />
+              {children}
+              <Footer />
+            </div>
+          </ThemeProvider>
         </ApolloWrapper>
       </body>
     </html>

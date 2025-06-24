@@ -82,29 +82,25 @@ const SceneForm = ({
       <form ref={formRef} onSubmit={onSubmit} className="w-full">
         <Fieldset className="flex flex-col gap-4">
           <Field>
-            <Label className="block text-sm font-medium text-gray-700">
-              Title
-            </Label>
+            <Label className="block text-sm font-medium">Title</Label>
             <Input
               name="title"
               required
               defaultValue={initialData?.title}
               className={clsx(
                 'border mt-1 block w-full rounded-lg px-3 py-2',
-                'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                'focus:outline-none focus:ring-2 focus:ring-foreground focus:border-transparent'
               )}
             />
           </Field>
           <Field>
-            <Label className="block text-sm font-medium text-gray-700">
-              Description
-            </Label>
+            <Label className="block text-sm font-medium">Description</Label>
             <Textarea
               name="description"
               defaultValue={initialData?.description}
               className={clsx(
                 'border mt-1 block w-full rounded-lg px-3 py-2',
-                'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                'focus:outline-none focus:ring-2 focus:foreground focus:border-transparent'
               )}
             />
           </Field>
@@ -120,7 +116,7 @@ const SceneForm = ({
             </Button>
             <Button
               type="submit"
-              btnStyle={ButtonStyle.BLUE}
+              btnStyle={ButtonStyle.PRIMARY}
               className="flex-1"
             >
               Save

@@ -18,13 +18,13 @@ export default async function Storyboard({
   });
 
   return (
-    <main className="w-full h-full min-h-[480px] px-8 pb-8 flex-grow flex flex-col bg-inherit">
-      <div className="w-full flex align-center justify-end gap-4 mb-4">
+    <main className="w-full h-full min-h-[480px] pb-8 flex-grow flex flex-col bg-inherit">
+      <div className="w-full px-8 py-4 flex align-center justify-end gap-4 mb-4">
         <Breadcrumbs storyboardTitle={'My storyboard'} />
         <AddButton entity={Entity.SCENE} />
       </div>
-      <div className="w-full h-full flex relative bg-inherit">
-        <SceneList items={data.getStoryboardScenes} storyboardId={id}/>
+      <div className="w-full h-full px-8 flex relative bg-inherit">
+        <SceneList items={data.getStoryboardScenes} storyboardId={id} />
       </div>
     </main>
   );

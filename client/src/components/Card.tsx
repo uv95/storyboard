@@ -11,10 +11,10 @@ interface CardProps {
 const Card = ({ children, className, handleEdit, handleDelete }: CardProps) => {
   return (
     <div
-      className={`${className} h-24 rounded-lg flex items-center gap-4 bg-white shadow-sm`}
+      className={`${className} h-24 rounded-lg flex items-center gap-4 bg-surface shadow-sm`}
     >
       {children}
-      <div className="ml-auto p-4 flex gap-2 self-start">
+      <div className="ml-auto p-4 flex gap-2 self-start text-foreground">
         <Pencil
           className="w-4 h-4 cursor-pointer"
           onClick={(e) => {
@@ -23,7 +23,7 @@ const Card = ({ children, className, handleEdit, handleDelete }: CardProps) => {
           }}
         />
         <Trash2
-          className="w-4 h-4 text-pantone cursor-pointer"
+          className="w-4 h-4 cursor-pointer"
           onClick={(e) => {
             e.preventDefault();
             handleDelete();

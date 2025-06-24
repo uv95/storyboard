@@ -17,7 +17,7 @@ const AddButton = ({ entity }: AddButtonProps) => {
   return (
     <>
       <Button
-        btnStyle={ButtonStyle.BLUE}
+        btnStyle={ButtonStyle.PRIMARY}
         onClick={() =>
           (entity === Entity.STORYBOARD
             ? setIsAddStoryboardOpen

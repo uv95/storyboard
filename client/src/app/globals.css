@@ -3,23 +3,30 @@
 :root {
   --background: #f1faee;
   --foreground: #1d3557;
+  --surface: #e1efdeb1;
   --pantone: #e63946;
   --non-photo-blue: #a8dadc;
   --cerulean: #457b9d;
+  --coral: #e07a5f;
+  --apricot: #f2cc8f;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-pantone: var(--pantone);
+  --color-surface: var(--surface);
   --color-cerulean: var(--cerulean);
+  --color-coral: var(--coral);
+  --color-apricot: var(--apricot);
   --color-non-photo-blue: var(--non-photo-blue);
   --font-sans: var(--font-space-grotesk);
 }
 
-.dark {
+[data-theme='dark'] {
   --background: #1d3557;
   --foreground: #f1faee;
+  --surface: #284876;
 }
 
 body {

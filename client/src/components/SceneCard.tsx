@@ -24,9 +24,7 @@ const SceneCard = ({ scene }: SceneCardProps) => {
           {Icon && <Icon className="w-8 h-8 ml-4 flex-shrink-0" />}
           <div className="flex flex-col justify-between py-4">
             <p className="font-bold">{scene.title}</p>
-            <p className="text-sm text-gray-600 line-clamp-2">
-              {scene.description}
-            </p>
+            <p className="text-sm line-clamp-2">{scene.description}</p>
           </div>
         </>
       </Card>
