@@ -29,7 +29,7 @@ const DeleteModal = ({ isOpen, onClose, entity, id }: DeleteModalProps) => {
         </Button>
         <Button
           className="flex-1"
-          btnStyle={ButtonStyle.BLUE}
+          btnStyle={ButtonStyle.OUTLINE}
           onClick={handleDelete}
         >
           Yes

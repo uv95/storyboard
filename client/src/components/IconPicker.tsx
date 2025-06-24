@@ -14,10 +14,8 @@ export default function IconPicker({ selected, setIcon }: IconPickerProps) {
           key={value}
           onClick={() => setIcon(value)}
           className={clsx(
-            'flex flex-col items-center p-2 border rounded-lg hover:bg-gray-100',
-            selected === value
-              ? 'border-blue-500 ring-2 ring-blue-300'
-              : 'border-gray-300'
+            'flex flex-col items-center p-2 border border-surface rounded-lg hover:bg-surface',
+            selected === value ? 'bg-surface' : ''
           )}
           aria-label={`Select icon: ${label}`}
           type="button"

@@ -13,9 +13,9 @@ const Button = (props: ButtonProps) => {
   const { children, className, onClick, btnStyle, type, ...otherProps } = props;
 
   const styles: Record<ButtonStyle, string> = {
-    [ButtonStyle.OUTLINE]: 'border border-gray-300 text-gray-700 bg-white',
+    [ButtonStyle.OUTLINE]: 'border border-foreground text-foreground',
     [ButtonStyle.RED]: 'bg-pantone text-white',
-    [ButtonStyle.BLUE]: 'bg-cerulean text-white',
+    [ButtonStyle.PRIMARY]: 'bg-cerulean text-white',
   };
 
   return (

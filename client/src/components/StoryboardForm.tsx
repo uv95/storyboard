@@ -81,7 +81,7 @@ const StoryboardForm = ({
             </Button>
             <Button
               type="submit"
-              btnStyle={ButtonStyle.BLUE}
+              btnStyle={ButtonStyle.PRIMARY}
               className="flex-1"
             >
               Save

@@ -18,7 +18,7 @@ export interface Storyboard {
 export enum ButtonStyle {
   OUTLINE = 'outline',
   RED = 'red',
-  BLUE = 'blue',
+  PRIMARY = 'primary',
 }
 
 export enum Entity {
