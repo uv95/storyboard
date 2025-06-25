@@ -17,10 +17,16 @@ const SceneList = ({ storyboardId, items }: SceneListProps) => {
 
   if (!scenes) return <div>Loading...</div>;
 
+  const scenesInOrder = [...scenes].sort(
+    (a: Scene, b: Scene) => a.order - b.order
+  );
+
   return (
-    <div className="flex flex-col gap-4 w-full">
-      {scenes.length ? (
-        scenes.map((scene: Scene) => <SceneCard key={scene.id} scene={scene} />)
+    <div className="flex gap-4 w-full flex-wrap">
+      {scenesInOrder.length ? (
+        scenesInOrder
+          .sort((a: Scene, b: Scene) => a.order - b.order)
+          .map((scene: Scene) => <SceneCard key={scene.id} scene={scene} />)
       ) : (
         <div>No scenes yet</div>
       )}

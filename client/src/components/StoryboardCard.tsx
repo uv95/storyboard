@@ -17,11 +17,11 @@ const StoryboardCard = ({ storyboard }: StoryboardCardProps) => {
   return (
     <>
       <Card
-        className="min-w-96 pl-4 cursor-pointer"
+        className="w-96 pl-4 cursor-pointer"
         handleEdit={() => setIsEdit(true)}
         handleDelete={() => setIsDelete(true)}
       >
-        <strong className="text-lg">{storyboard.title}</strong>
+        <strong className="font-bold line-clamp-2">{storyboard.title}</strong>
       </Card>
 
       {isDelete && (
