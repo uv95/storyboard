@@ -99,7 +99,7 @@ const SceneForm = ({
               name="description"
               defaultValue={initialData?.description}
               className={clsx(
-                'border mt-1 block w-full rounded-lg px-3 py-2',
+                'border mt-1 block w-full h-32 rounded-lg px-3 py-2 text-xs',
                 'focus:outline-none focus:ring-2 focus:foreground focus:border-transparent'
               )}
             />

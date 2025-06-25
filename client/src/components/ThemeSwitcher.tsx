@@ -14,7 +14,7 @@ const ThemeSwitcher = () => {
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none inline-block size-5 translate-x-0 rounded-full bg-foreground shadow-lg ring-0 transition duration-200 ease-in-out group-data-checked:bg-foreground group-data-checked:translate-x-7"
+        className="pointer-events-none inline-block size-5 translate-x-0 rounded-full bg-cerulean shadow-lg ring-0 transition duration-200 ease-in-out group-data-checked:translate-x-7"
       />
     </Switch>
   );

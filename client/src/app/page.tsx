@@ -11,7 +11,7 @@ export default async function Home() {
 
   return (
     <main className="w-full h-full min-h-[480px] pb-8 flex-grow flex flex-col bg-inherit">
-      <div className="w-full px-8 py-3 flex align-center justify-end gap-4 mb-4">
+      <div className="w-full px-8 py-3 flex items-center justify-end gap-4 mb-4">
         <AddButton entity={Entity.STORYBOARD} />
       </div>
       <div className="w-full h-full px-8 flex relative bg-inherit">

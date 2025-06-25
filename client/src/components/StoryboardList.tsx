@@ -17,10 +17,15 @@ const StoryboardList = ({ items }: StoryboardListProps) => {
 
   if (!storyboards) return <div>Loading...</div>;
 
+  const storyboardsInOrder = [...storyboards].sort(
+    (a: Storyboard, b: Storyboard) =>
+      new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+  );
+
   return (
     <div className="flex gap-4 w-full flex-wrap">
-      {storyboards.length ? (
-        storyboards.map((storyboard: Storyboard) => (
+      {storyboardsInOrder.length ? (
+        storyboardsInOrder.map((storyboard: Storyboard) => (
           <Link href={`/storyboard/${storyboard.id}`} key={storyboard.id}>
             <StoryboardCard storyboard={storyboard} />
           </Link>
