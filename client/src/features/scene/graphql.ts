@@ -53,3 +53,11 @@ export const DELETE_SCENE = gql`
     }
   }
 `;
+
+export const REORDER_SCENES = gql`
+  mutation reorderScenes($scenes: [ReorderScenesInput!]!) {
+    reorderScenes(scenes: $scenes) {
+      id
+    }
+  }
+`;
