@@ -5,6 +5,7 @@ import { Scene } from './dto/scene.type';
 import { SceneService } from './scene.service';
 import { CreateSceneInput } from './dto/create-scene.input';
 import { UpdateSceneInput } from './dto/update-scene.input';
+import { ReorderScenesInput } from './dto/reorder-scenes.input';
 
 @Resolver(() => Scene)
 export class SceneResolver {
@@ -38,5 +39,13 @@ export class SceneResolver {
   @Mutation(() => Scene)
   async deleteScene(@Args('id', { type: () => UUIDType }) id: string) {
     return await this.sceneService.delete(id);
+  }
+
+  @Mutation(() => [Scene])
+  async reorderScenes(
+    @Args('scenes', { type: () => [ReorderScenesInput] })
+    scenes: ReorderScenesInput[],
+  ) {
+    return await this.sceneService.reorderScenes(scenes);
   }
 }
