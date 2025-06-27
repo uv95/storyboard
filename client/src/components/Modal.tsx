@@ -18,7 +18,10 @@ const Modal = ({ children, isOpen, onClose, title, className }: ModalProps) => {
           <DialogPanel
             className={`${className} w-full max-w-md transform overflow-hidden rounded-2xl bg-background p-4 sm:p-6 text-left align-middle shadow-xl transition-all`}
           >
-            <DialogTitle as="h3" className="text-xl mb-4 font-medium leading-6">
+            <DialogTitle
+              as="h3"
+              className="text-xl mb-4 font-medium leading-6 z-2 relative"
+            >
               {title}
             </DialogTitle>
             {children}

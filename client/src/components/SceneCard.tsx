@@ -38,27 +38,30 @@ const SceneCard = ({ scene }: SceneCardProps) => {
   const Icon = icons.find((icon) => icon.value === scene.icon)?.Icon;
   return (
     <>
-      <div className="border border-pantone" ref={setNodeRef}>
-        <Card
-          className="w-96 cursor-pointer"
-          handleEdit={() => setIsEdit(true)}
-          handleDelete={() => setIsDelete(true)}
-          onClick={() => setIsOpenScene(true)}
-          style={style}
-          {...listeners}
-          {...attributes}
-        >
-          <>
-            {Icon && <Icon className="w-8 h-8 ml-4 flex-shrink-0" />}
-            <div className="flex flex-col py-4">
-              <p className="font-bold">
-                {scene.order}. {scene.title}
-              </p>
-              <p className="text-sm line-clamp-2">{scene.description}</p>
-            </div>
-          </>
-        </Card>
-      </div>
+      <Card
+        ref={setNodeRef}
+        className="w-96 cursor-pointer"
+        handleEdit={() => setIsEdit(true)}
+        handleDelete={() => setIsDelete(true)}
+        onClick={() => setIsOpenScene(true)}
+        style={style}
+        {...listeners}
+        {...attributes}
+      >
+        <>
+          {Icon && <Icon className="w-8 h-8 ml-4 flex-shrink-0" />}
+          <div className="flex flex-col py-4 min-w-0">
+            <p
+              className={`font-bold line-clamp-${
+                scene.description ? '1' : '2'
+              }`}
+            >
+              {scene.order}. {scene.title}
+            </p>
+            <p className="text-sm line-clamp-2">{scene.description}</p>
+          </div>
+        </>
+      </Card>
 
       {isDelete && (
         <DeleteModal

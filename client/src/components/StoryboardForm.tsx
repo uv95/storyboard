@@ -56,9 +56,7 @@ const StoryboardForm = ({
       <form onSubmit={onSubmit} className="w-full">
         <Fieldset className="flex flex-col gap-4">
           <Field>
-            <Label className="block text-sm font-medium text-gray-700">
-              Title
-            </Label>
+            <Label className="block text-sm font-medium">Title</Label>
             <Input
               ref={titleRef}
               name="title"

@@ -8,7 +8,7 @@ const ThemeSwitcher = () => {
 
   return (
     <Switch
-      checked={theme === 'dark'}
+      checked={theme === 'dark' || true}
       onChange={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       className="group relative flex h-7 w-14 cursor-pointer rounded-xl bg-surface p-1 ease-in-out focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white shadow-sm"
     >
