@@ -68,4 +68,7 @@ export const useDeleteScene = (
 export const useReorderScenes = (
   options?: MutationHookOptions<ReorderScenesResult, ReorderScenesInput>
 ) =>
-  useMutation<ReorderScenesResult, ReorderScenesInput>(REORDER_SCENES, options);
+  useMutation<ReorderScenesResult, ReorderScenesInput>(REORDER_SCENES, {
+    refetchQueries: [GET_STORYBOARD_SCENES],
+    ...options,
+  });

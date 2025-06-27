@@ -1,5 +1,7 @@
+'use client';
+
 import { Pencil, Trash2 } from 'lucide-react';
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 interface CardProps {
   children: ReactNode;
@@ -7,6 +9,8 @@ interface CardProps {
   handleEdit: () => void;
   handleDelete: () => void;
   onClick?: () => void;
+  ref?: (element: HTMLElement | null) => void;
+  style?: CSSProperties | undefined;
 }
 
 const Card = ({
@@ -15,11 +19,17 @@ const Card = ({
   handleEdit,
   handleDelete,
   onClick,
+  ref,
+  style,
+  ...otherProps
 }: CardProps) => {
   return (
     <div
       className={`${className} h-24 rounded-lg flex items-center gap-4 bg-surface shadow-sm`}
       onClick={onClick}
+      ref={ref}
+      style={style}
+      {...otherProps}
     >
       {children}
       <div className="ml-auto p-4 flex gap-2 self-start text-foreground">

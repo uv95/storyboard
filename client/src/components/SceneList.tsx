@@ -1,7 +1,10 @@
 'use client';
 
-import { useGetScenes } from '@/features/scene/hooks';
+import { useGetScenes, useReorderScenes } from '@/features/scene/hooks';
 import { Scene } from '@/lib/types';
+import { useDndMonitor, useDroppable } from '@dnd-kit/core';
+import { SortableContext, arrayMove } from '@dnd-kit/sortable';
+import { useEffect, useMemo, useState } from 'react';
 import SceneCard from './SceneCard';
 
 interface SceneListProps {
@@ -10,27 +13,74 @@ interface SceneListProps {
 }
 
 const SceneList = ({ storyboardId, items }: SceneListProps) => {
-  const { data, error } = useGetScenes(storyboardId);
-  const scenes = data?.getStoryboardScenes || items;
+  const { isOver, setNodeRef } = useDroppable({
+    id: 'droppable',
+  });
+  const style = {
+    color: isOver ? 'green' : undefined,
+  };
 
+  const { data, loading, error } = useGetScenes(storyboardId);
+  const [reorderScenes] = useReorderScenes();
+  const serverScenes = data?.getStoryboardScenes || items;
+
+  const [scenes, setScenes] = useState<Scene[]>(
+    [...serverScenes].sort((a, b) => a.order - b.order)
+  );
+  const sceneIds = useMemo(() => scenes.map((s) => s.id!), [scenes]);
+
+  useEffect(() => {
+    if (!serverScenes.length) {
+      setScenes([]);
+    } else {
+      setScenes([...serverScenes].sort((a, b) => a.order - b.order));
+    }
+  }, [serverScenes]);
+
+  useDndMonitor({
+    onDragEnd(event) {
+      const { active, over } = event;
+
+      if (!over || active.id === over.id) {
+        return;
+      }
+
+      const oldIndex = scenes.findIndex((scene) => scene.id === active.id);
+      const newIndex = scenes.findIndex((scene) => scene.id === over.id);
+      const newScenes = arrayMove(scenes, oldIndex, newIndex);
+
+      setScenes(newScenes);
+
+      const reorderScenesInput = newScenes.map((scene, index) => ({
+        id: scene.id!,
+        order: index + 1,
+      }));
+
+      reorderScenes({
+        variables: { scenes: reorderScenesInput },
+      });
+    },
+  });
+
+  if (loading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
-  if (!scenes) return <div>Loading...</div>;
-
-  const scenesInOrder = [...scenes].sort(
-    (a: Scene, b: Scene) => a.order - b.order
-  );
-
   return (
-    <div className="flex gap-4 w-full flex-wrap">
-      {scenesInOrder.length ? (
-        scenesInOrder
-          .sort((a: Scene, b: Scene) => a.order - b.order)
-          .map((scene: Scene) => <SceneCard key={scene.id} scene={scene} />)
-      ) : (
-        <div>No scenes yet</div>
-      )}
-    </div>
+    <SortableContext items={sceneIds}>
+      <div
+        className="flex gap-4 w-full flex-wrap"
+        ref={setNodeRef}
+        style={style}
+      >
+        {scenes.length ? (
+          scenes.map((scene: Scene) => (
+            <SceneCard key={scene.id} scene={scene} />
+          ))
+        ) : (
+          <div>No scenes yet</div>
+        )}
+      </div>
+    </SortableContext>
   );
 };
 
