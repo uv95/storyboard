@@ -19,6 +19,7 @@ const DeleteModal = ({ isOpen, onClose, entity, id }: DeleteModalProps) => {
     (entity === Entity.SCENE ? deleteScene : deleteStoryboard)({
       variables: { id },
     });
+    onClose();
   }
 
   return (

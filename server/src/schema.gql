@@ -24,6 +24,7 @@ type Mutation {
   createStoryboard(data: CreateStoryboardInput!): Storyboard!
   deleteScene(id: UUID!): Scene!
   deleteStoryboard(id: UUID!): Storyboard!
+  reorderScenes(scenes: [ReorderScenesInput!]!): [Scene!]!
   updateScene(data: UpdateSceneInput!, id: UUID!): Scene!
   updateStoryboard(data: UpdateStoryboardInput!, id: UUID!): Storyboard!
 }
@@ -33,6 +34,11 @@ type Query {
   getStoryboard(id: UUID!): Storyboard!
   getStoryboardScenes(storyboardId: UUID!): [Scene!]!
   getStoryboards: [Storyboard!]!
+}
+
+input ReorderScenesInput {
+  id: UUID!
+  order: Float!
 }
 
 type Scene {

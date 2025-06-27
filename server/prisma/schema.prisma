@@ -29,4 +29,6 @@ model Scene {
   order        Int
   storyboard   Storyboard @relation(fields: [storyboardId], references: [id], onDelete: Cascade)
   storyboardId String
+
+  @@unique([storyboardId, order])
 }

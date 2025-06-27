@@ -51,7 +51,7 @@ export type UpdateSceneInput = {
   };
 };
 
-export type DeleteSceneInput = {
+export type IdInput = {
   id: string;
 };
 
@@ -60,8 +60,8 @@ export type UpdateStoryboardInput = {
   data: { title?: string };
 };
 
-export type DeleteStoryboardInput = {
-  id: string;
+export type ReorderScenesInput = {
+  scenes: { id: string; order: number }[];
 };
 
 export type CreateSceneMutationResult = {
@@ -86,4 +86,8 @@ export type UpdateSceneMutationResult = {
 
 export type UpdateStoryboardMutationResult = {
   data: { updateStoryboard: Storyboard };
+};
+
+export type ReorderScenesResult = {
+  data: { reorderScenes: { id: string } };
 };

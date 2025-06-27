@@ -14,8 +14,8 @@ import {
 import {
   CreateStoryboardInput,
   CreateStoryboardMutationResult,
-  DeleteStoryboardInput,
   DeleteStoryboardMutationResult,
+  IdInput,
   UpdateStoryboardInput,
   UpdateStoryboardMutationResult,
 } from '@/lib/types';
@@ -60,15 +60,9 @@ export const useUpdateStoryboard = (
   );
 
 export const useDeleteStoryboard = (
-  options?: MutationHookOptions<
-    DeleteStoryboardMutationResult,
-    DeleteStoryboardInput
-  >
+  options?: MutationHookOptions<DeleteStoryboardMutationResult, IdInput>
 ) =>
-  useMutation<DeleteStoryboardMutationResult, DeleteStoryboardInput>(
-    DELETE_STORYBOARD,
-    {
-      refetchQueries: [GET_STORYBOARDS],
-      ...options,
-    }
-  );
+  useMutation<DeleteStoryboardMutationResult, IdInput>(DELETE_STORYBOARD, {
+    refetchQueries: [GET_STORYBOARDS],
+    ...options,
+  });

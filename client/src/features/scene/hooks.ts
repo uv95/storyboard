@@ -1,8 +1,10 @@
 import {
   CreateSceneInput,
   CreateSceneMutationResult,
-  DeleteSceneInput,
   DeleteSceneMutationResult,
+  IdInput,
+  ReorderScenesInput,
+  ReorderScenesResult,
   UpdateSceneInput,
   UpdateSceneMutationResult,
 } from '@/lib/types';
@@ -17,6 +19,7 @@ import {
   DELETE_SCENE,
   GET_SCENE,
   GET_STORYBOARD_SCENES,
+  REORDER_SCENES,
   UPDATE_SCENE,
 } from './graphql';
 
@@ -55,9 +58,17 @@ export const useUpdateScene = (
   );
 
 export const useDeleteScene = (
-  options?: MutationHookOptions<DeleteSceneMutationResult, DeleteSceneInput>
+  options?: MutationHookOptions<DeleteSceneMutationResult, IdInput>
 ) =>
-  useMutation<DeleteSceneMutationResult, DeleteSceneInput>(DELETE_SCENE, {
+  useMutation<DeleteSceneMutationResult, IdInput>(DELETE_SCENE, {
+    refetchQueries: [GET_STORYBOARD_SCENES],
+    ...options,
+  });
+
+export const useReorderScenes = (
+  options?: MutationHookOptions<ReorderScenesResult, ReorderScenesInput>
+) =>
+  useMutation<ReorderScenesResult, ReorderScenesInput>(REORDER_SCENES, {
     refetchQueries: [GET_STORYBOARD_SCENES],
     ...options,
   });
