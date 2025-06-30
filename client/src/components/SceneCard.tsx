@@ -40,7 +40,6 @@ const SceneCard = ({ scene }: SceneCardProps) => {
     <>
       <Card
         ref={setNodeRef}
-        className="w-96 cursor-pointer"
         handleEdit={() => setIsEdit(true)}
         handleDelete={() => setIsDelete(true)}
         onClick={() => setIsOpenScene(true)}
@@ -49,7 +48,9 @@ const SceneCard = ({ scene }: SceneCardProps) => {
         {...attributes}
       >
         <>
-          {Icon && <Icon className="w-8 h-8 ml-4 flex-shrink-0" />}
+          {Icon && (
+            <Icon className="w-6 sm:w-8 h-6 sm:h-8 ml-4 flex-shrink-0" />
+          )}
           <div className="flex flex-col py-4 min-w-0">
             <p
               className={`font-bold line-clamp-${
@@ -58,7 +59,9 @@ const SceneCard = ({ scene }: SceneCardProps) => {
             >
               {scene.order}. {scene.title}
             </p>
-            <p className="text-sm line-clamp-2">{scene.description}</p>
+            <p className="text-sm leading-tight line-clamp-2">
+              {scene.description}
+            </p>
           </div>
         </>
       </Card>

@@ -23,7 +23,9 @@ const Button = (props: ButtonProps) => {
       {...otherProps}
       onClick={onClick}
       type={type}
-      className={`${className} text-sm rounded-xl py-2 px-4 ${styles[btnStyle]}`}
+      className={`${className || ''} text-sm rounded-xl py-2 px-4 ${
+        styles[btnStyle]
+      }`}
     >
       {children}
     </HeadlessUiButton>
