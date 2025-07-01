@@ -21,7 +21,9 @@ const Scene = ({ isOpen, onClose, scene }: SceneProps) => {
       {Icon && (
         <Icon className="w-16 h-16 absolute top-2 right-2 text-surface z-1" />
       )}
-      <div className="w-full flex gap-3 mt-4">{scene.description}</div>
+      <div className="w-full flex gap-3 mt-4 z-1 relative break-words">
+        {scene.description}
+      </div>
     </Modal>
   );
 };

@@ -7,12 +7,12 @@ interface BreadcrumbsProps {
 
 const Breadcrumbs = ({ storyboardTitle }: BreadcrumbsProps) => {
   return (
-    <div className="flex-grow-1 mr-auto text-sm flex items-center gap-1">
+    <div className="mr-auto text-sm flex items-center gap-1 flex-grow-1 basis-0">
       <Link href={'/'}>
         <ArrowLeft className="w-4" />
       </Link>{' '}
       /
-      <strong className="max-w-[50%] line-clamp-1 overflow-ellipsis">
+      <strong className="min-w-0 line-clamp-1 overflow-ellipsis">
         {storyboardTitle}
       </strong>
     </div>

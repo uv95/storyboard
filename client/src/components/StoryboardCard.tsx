@@ -17,7 +17,7 @@ const StoryboardCard = ({ storyboard }: StoryboardCardProps) => {
   return (
     <>
       <Card
-        className="w-96 pl-4 cursor-pointer"
+        className="pl-4"
         handleEdit={() => setIsEdit(true)}
         handleDelete={() => setIsDelete(true)}
       >

@@ -8,7 +8,7 @@ interface IconPickerProps {
 
 export default function IconPicker({ selected, setIcon }: IconPickerProps) {
   return (
-    <div className="grid grid-cols-4 gap-4 p-2">
+    <div className="grid grid-cols-4 gap-2 2xs:gap-4 p-2">
       {icons.map(({ label, value, Icon }) => (
         <button
           key={value}

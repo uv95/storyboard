@@ -23,6 +23,11 @@
   --font-sans: var(--font-space-grotesk);
 }
 
+@theme {
+  --breakpoint-xs: 30rem;
+  --breakpoint-2xs: 25rem;
+}
+
 [data-theme='dark'] {
   --background: #1d3557;
   --foreground: #f1faee;
@@ -34,6 +39,7 @@ body {
   color: var(--foreground);
   /* font-family: var(--font-sans); */
   box-sizing: border-box;
+  min-width: 20rem;
 }
 
 button {

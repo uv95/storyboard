@@ -27,9 +27,11 @@ export default function RootLayout({
       <body className={`${spaceGrotesk.variable} antialiased`}>
         <ApolloWrapper>
           <ThemeProvider>
-            <div className="min-h-screen flex flex-col justify-between font-sans">
+            <div className="w-full min-h-screen flex flex-col justify-between font-sans">
               <Header />
-              {children}
+              <main className="w-full h-full min-h-[480px] mt-11 sm:mt-0 pb-8 flex-grow flex flex-col bg-inherit">
+                {children}
+              </main>
               <Footer />
             </div>
           </ThemeProvider>

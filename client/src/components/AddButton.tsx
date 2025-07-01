@@ -17,6 +17,7 @@ const AddButton = ({ entity }: AddButtonProps) => {
   return (
     <>
       <Button
+        className="w-full 2xs:w-auto"
         btnStyle={ButtonStyle.PRIMARY}
         onClick={() =>
           (entity === Entity.STORYBOARD
