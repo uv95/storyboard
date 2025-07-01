@@ -2,13 +2,23 @@
 
 import { Switch } from '@headlessui/react';
 import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 const ThemeSwitcher = () => {
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <Switch
-      checked={theme === 'dark' || true}
+      checked={theme === 'dark'}
       onChange={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       className="group relative flex h-7 w-14 cursor-pointer rounded-xl bg-surface p-1 ease-in-out focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white shadow-sm"
     >
