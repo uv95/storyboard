@@ -51,7 +51,7 @@ const SceneCard = ({ scene }: SceneCardProps) => {
           {Icon && (
             <Icon className="w-6 sm:w-8 h-6 sm:h-8 ml-4 flex-shrink-0" />
           )}
-          <div className="flex flex-col py-4 min-w-0">
+          <div className="flex flex-col py-4 min-w-10">
             <p
               className={`font-bold line-clamp-${
                 scene.description ? '1' : '2'
